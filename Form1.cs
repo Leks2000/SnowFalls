@@ -41,12 +41,12 @@ namespace Snowfalls
                 snowFall.Y += snowFall.Size;
                 if (snowFall.Y > Screen.PrimaryScreen.WorkingArea.Height)
                 {
-                    snowFall.Y = -snowFall.Size;
+                    snowFall.Y = -snowFall.Y / 2;
                 }
                 snowFall.X += snowFall.Size;
                 if (snowFall.X > Screen.PrimaryScreen.WorkingArea.Width)
                 {
-                    snowFall.X = -snowFall.Size;
+                    snowFall.X = -snowFall.X / 2;
                 }
             }
             DrawStage();
@@ -55,18 +55,16 @@ namespace Snowfalls
         private void AddSnow()
         {
             var rnd = new Random();
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 50; i++)
             {
                 snowfall.Add(new SnowCord
                 {
-                    X = rnd.Next(Screen.PrimaryScreen.WorkingArea.Width),
-                    Y = -rnd.Next(Screen.PrimaryScreen.WorkingArea.Height),
+                    X = rnd.Next(-Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Width / 2),
+                    Y = -rnd.Next(0, Screen.PrimaryScreen.WorkingArea.Height / 2),
                     Size = rnd.Next(5, 35)
                 });
             }
         }
-
-
         private void DrawStage()
         {
             reset.DrawImage(stage, new Rectangle(0, 0,
